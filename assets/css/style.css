@@ -1,0 +1,60 @@
+@font-face {
+    font-family: OldGameFont;
+    src: url(Pixel_Emulator.otf);
+}
+
+div {
+    font-family: OldGameFont;
+    font-size: 30px;
+}
+
+#gb-left {
+    background-image: url("../images/gameboy-left.jpg");
+    background-color: white;
+    max-width: 343px;
+    height: 2373px;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+#gb-right {
+    background-image: url("../images/gameboy-right.jpg");
+    background-color: white;
+    max-width: 343px;
+    height: 2373px;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+#gb-mid {
+    width: 756px;
+    height: 2373px;
+}
+
+#gb-top {
+    background-image: url("../images/gameboy-top.jpg");
+    background-color: white;
+    max-width: 756px;
+    height: 317px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+#gb-bottom {
+    background-image: url("../images/gameboy-bottom.jpg");
+    background-color: white;
+    max-width: 756px;
+    height: 1367px;
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+#gb-screen {
+    background-color: #4c5d15;
+    width: 756px;
+    height: 689px;
+}
+
+.container {
+    padding: 20px;
+}

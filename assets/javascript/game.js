@@ -1,5 +1,5 @@
 // Choosing a random word
-var words = ["mushroom", "flower", "castle", "princess"];
+var words = ["mushroom", "flower", "castle", "princess", "turtle"];
 var word = words[Math.floor(Math.random() * words.length)];
 
 // Creating the answer array
@@ -36,7 +36,7 @@ comHP.textContent = remainingLetters;
 // 'On key up' function
 document.onkeyup = function (e) {
     // Check the game status
-    if (remainingLetters ===0 || remainingChances === 0) {
+    if (remainingLetters === 0 || remainingChances === 0) {
         return;
     }
 

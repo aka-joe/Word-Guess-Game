@@ -6,27 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Hangman</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="container">
-            Press any key to get started!<br>
-            <br>
-            <span id="answers"></span><br>
-            <br>
-            <span id="guesses" style="font-family: 'Courier New', Courier, monospace;"></span><br>
-            <br>
-            Remaining chances : <span id="user">10</span><br>
-            <br>
-            Remaining letters : <span id="computer"></span><br>
-            <br>
-            <span id="message"></span>
-        </div>
+    <div>
+        <table width="100%">
+            <tr>
+                <td id="gb-left"></td>
+                <td id="gb-mid">
+                    <table>
+                        <tr>
+                            <td id="gb-top"></td>
+                        </tr>
+                        <tr>
+                            <td id="gb-screen">
+                                <div class="container">
+                                    Press any key to get started!<br>
+                                    <br>
+                                    <span id="answers"></span><br>
+                                    <br>
+                                    <span id="guesses" style="font-family: OldGameFont;"></span><br>
+                                    <br>
+                                    Remaining chances : <span id="user">10</span><br>
+                                    <br>
+                                    Remaining letters : <span id="computer"></span><br>
+                                    <br>
+                                    <span id="message"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="gb-bottom"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td id="gb-right"></td>
+            </tr>
+        </table>
     </div>
 
+
+
+
     <script src="./assets/javascript/game.js"></script>
+
 </body>
 
 </html>
