@@ -1,49 +1,103 @@
-// Choosing a random word
-var words = ["mushroom", "flower", "castle", "princess", "turtle"];
-var word = words[Math.floor(Math.random() * words.length)];
+// Words list
+var words = ["mushroom", "flower", "castle", "princess", "turtle", "star", "jump", "coin", "yoshi", "mario", "peach", "luigi", "plumber", "pipe", "cannon", "hammer"];
 
-// Creating the answer array
+// creating variables
+var word = "";
 var wordGuess = "";
 var answerArray = [];
-for (var i = 0; i < word.length; i++) {
-    answerArray[i] = "_";
-    wordGuess += "_ ";
-}
-
-// Creating the array for checking the letters whether have been used
 var alphabets = [];
-for (i = 0; i < 26; i++) {
-    alphabets[i] = true;
-}
-
-var remainingLetters = word.length;
-var remainingChances = 10;
-var userAnswers = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
+var remainingLetters = 0;
+var remainingChances = 0;
+var userAnswers = "";
+var gameStatus = "";
 var guessRight = false;
-
 var displayAnswer = document.getElementById("answers");
-var displayGuessed = document.getElementById("guesses")
+var displayGuessed = document.getElementById("guesses");
 var userHP = document.getElementById("user");
 var comHP = document.getElementById("computer");
-var endingGame = document.getElementById("message")    // .innerHTML
+var endingGame = document.getElementById("message");
+
+function reset() {
+    // Choosing a random word
+    word = words[Math.floor(Math.random() * words.length)];
+
+    // Reset values
+    answerArray = [];
+    alphabets = [];
+    wordGuess = "";
+    userAnswers = "";
+    remainingLetters = word.length;
+    remainingChances = 0;
+    guessRight = false;
+    gameStatus = "ready";
+
+    // Creating the answer array
+    for (var i = 0; i < word.length; i++) {
+        answerArray[i] = "_";
+        wordGuess += "_ ";
+    }
+    for (i = 0; i < 26; i++) {
+        alphabets[i] = true;
+    }
+
+    // reset the screen
+    displayAnswer.textContent = "";
+    displayGuessed.textContent = "";
+    userHP.textContent = "";
+    comHP.textContent = "";
+    endingGame.textContent = "";
+    screenImg("url('./assets/images/start.jpg')");
+}
+
+function screenImg(imgURL) {
+    document.getElementById("gb-screen").style.backgroundImage = imgURL;
+}
 
 // Display game status
-displayAnswer.textContent = wordGuess;
-displayGuessed.textContent = userAnswers;
-userHP.textContent = remainingChances;
-comHP.textContent = remainingLetters;
+function displayStatus() {
+    displayAnswer.textContent = wordGuess;
+    displayGuessed.textContent = userAnswers;
+    userHP.textContent = remainingChances;
+    comHP.textContent = remainingLetters;
+}
+
+reset();
 
 // 'On key up' function
 document.onkeyup = function (e) {
-    // Check the game status
-    if (remainingLetters === 0 || remainingChances === 0) {
-        return;
-    }
 
     var userInput = e.key;
     userInput = userInput.toLowerCase();
     var codeInput = userInput.charCodeAt(0);
+    
+    // Check the game status
+    if (gameStatus === "ready") {
+        if (userInput === "1") {
+            screenImg("none");
+            gameStatus = "start";
+            remainingChances = 10;
+            displayStatus();
+        } else if (userInput === "2") {
+            screenImg("none");
+            gameStatus = "start";
+            remainingChances = 7;
+            displayStatus();
+        }
+    } else if (gameStatus === "end") {
+        if (userInput === "enter") {
+            displayAnswer.textContent = "";        displayGuessed.textContent = "";
+            userHP.textContent = "";
+            comHP.textContent = "";
+            endingGame.textContent = "";
+            screenImg("url('./assets/images/start.jpg')");
+            reset();
+        }
+    }
 
+    if (remainingLetters === 0 || remainingChances === 0) {
+        return;
+    }
+    
     // Valid only 'a~z' letters only
     if (userInput.length === 1 && codeInput >= 97 && codeInput <= 122) {
         // Check the input key whether have been used or not
@@ -78,17 +132,15 @@ document.onkeyup = function (e) {
                 wordGuess += answerArray[i] + " ";
             }
 
-            // Display game status
-            displayAnswer.textContent = wordGuess;
-            displayGuessed.textContent = userAnswers;
-            userHP.textContent = remainingChances;
-            comHP.textContent = remainingLetters;
+            displayStatus();
 
             // Show ending
             if (remainingLetters === 0) {
                 endingGame.textContent = "You won";
+                gameStatus = "end";
             } else if (remainingChances === 0) {
                 endingGame.textContent = "You lost";
+                gameStatus = "end";
             }
         }
     }

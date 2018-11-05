@@ -1,6 +1,6 @@
 @font-face {
     font-family: OldGameFont;
-    src: url(GameBoy.ttf);
+    src: url(Pixel_Emulator.otf);
 }
 
 div {
@@ -50,9 +50,11 @@ div {
 }
 
 #gb-screen {
-    background-color: #4c5d15;
+    background-image: url("../images/start.jpg");
+    background-color: #829541;
     width: 512px;
     height: 465px;
+    background-repeat: no-repeat;
 }
 
 .container {
