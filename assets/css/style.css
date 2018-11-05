@@ -9,52 +9,52 @@ div {
 }
 
 #gb-left {
-    background-image: url("../images/gameboy-left.jpg");
+    background-image: url("../images/gb-left.jpg");
     background-color: white;
-    max-width: 343px;
-    height: 2373px;
-    background-position: right;
+    max-width: 232px;
+    height: 1605px;
+    background-position: top right;
     background-repeat: no-repeat;
 }
 
 #gb-right {
-    background-image: url("../images/gameboy-right.jpg");
+    background-image: url("../images/gb-right.jpg");
     background-color: white;
-    max-width: 343px;
-    height: 2373px;
-    background-position: left;
+    max-width: 232px;
+    height: 1605px;
+    background-position: top left;
     background-repeat: no-repeat;
 }
 
 #gb-mid {
-    width: 756px;
-    height: 2373px;
+    width: 512px;
+    height: 1605px;
 }
 
 #gb-top {
-    background-image: url("../images/gameboy-top.jpg");
+    background-image: url("../images/gb-top.jpg");
     background-color: white;
-    max-width: 756px;
-    height: 317px;
+    max-width: 512px;
+    height: 210px;
     background-position: bottom;
     background-repeat: no-repeat;
 }
 
 #gb-bottom {
-    background-image: url("../images/gameboy-bottom.jpg");
+    background-image: url("../images/gb-bottom.jpg");
     background-color: white;
-    max-width: 756px;
-    height: 1367px;
+    max-width: 512px;
+    height: 930px;
     background-position: top;
     background-repeat: no-repeat;
 }
 
 #gb-screen {
     background-color: #4c5d15;
-    width: 756px;
-    height: 689px;
+    width: 512px;
+    height: 465px;
 }
 
 .container {
-    padding: 20px;
+    padding: 15px;
 }
