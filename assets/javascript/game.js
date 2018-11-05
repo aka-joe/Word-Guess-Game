@@ -33,8 +33,8 @@ function reset() {
 
     // Creating the answer array
     for (var i = 0; i < word.length; i++) {
-        answerArray[i] = "_";
-        wordGuess += "_ ";
+        answerArray[i] = "?";
+        wordGuess += "<div class='brick'>?</div>";
     }
     for (i = 0; i < 26; i++) {
         alphabets[i] = true;
@@ -55,10 +55,18 @@ function screenImg(imgURL) {
 
 // Display game status
 function displayStatus() {
-    displayAnswer.textContent = wordGuess;
+    displayAnswer.innerHTML = wordGuess;
     displayGuessed.textContent = userAnswers;
-    userHP.textContent = remainingChances;
-    comHP.textContent = remainingLetters;
+    userHP.innerHTML = "MARIO<br>Life x" + remainingChances;
+    comHP.innerHTML = "Bricks<br>Left x" + remainingLetters;
+}
+
+// Starting the game
+function startGame(chances) {
+    remainingChances = chances;
+    gameStatus = "start";
+    screenImg("none");
+    displayStatus();
 }
 
 reset();
@@ -73,27 +81,15 @@ document.onkeyup = function (e) {
     // Check the game status
     if (gameStatus === "ready") {
         if (userInput === "1") {
-            screenImg("none");
-            gameStatus = "start";
-            remainingChances = 10;
-            displayStatus();
+            startGame(10);
         } else if (userInput === "2") {
-            screenImg("none");
-            gameStatus = "start";
-            remainingChances = 7;
-            displayStatus();
+            startGame(7);
         }
     } else if (gameStatus === "end") {
         if (userInput === "enter") {
-            displayAnswer.textContent = "";        displayGuessed.textContent = "";
-            userHP.textContent = "";
-            comHP.textContent = "";
-            endingGame.textContent = "";
-            screenImg("url('./assets/images/start.jpg')");
             reset();
         }
     }
-
     if (remainingLetters === 0 || remainingChances === 0) {
         return;
     }
@@ -129,7 +125,7 @@ document.onkeyup = function (e) {
 
             wordGuess = "";
             for (var i = 0; i < answerArray.length; i++) {
-                wordGuess += answerArray[i] + " ";
+                wordGuess += "<div class='brick'>" + answerArray[i] + "</div>";
             }
 
             displayStatus();

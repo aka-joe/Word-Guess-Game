@@ -10,20 +10,20 @@ div {
 
 #gb-left {
     background-image: url("../images/gb-left.jpg");
+    background-position: top right;
+    background-repeat: no-repeat;
     background-color: white;
     max-width: 232px;
     height: 1605px;
-    background-position: top right;
-    background-repeat: no-repeat;
 }
 
 #gb-right {
     background-image: url("../images/gb-right.jpg");
+    background-position: top left;
+    background-repeat: no-repeat;
     background-color: white;
     max-width: 232px;
     height: 1605px;
-    background-position: top left;
-    background-repeat: no-repeat;
 }
 
 #gb-mid {
@@ -33,30 +33,52 @@ div {
 
 #gb-top {
     background-image: url("../images/gb-top.jpg");
+    background-position: bottom;
+    background-repeat: no-repeat;
     background-color: white;
     max-width: 512px;
     height: 210px;
-    background-position: bottom;
-    background-repeat: no-repeat;
 }
 
 #gb-bottom {
     background-image: url("../images/gb-bottom.jpg");
+    background-repeat: no-repeat;
+    background-position: top;
     background-color: white;
     max-width: 512px;
     height: 930px;
-    background-position: top;
-    background-repeat: no-repeat;
 }
 
 #gb-screen {
     background-image: url("../images/start.jpg");
+    background-repeat: no-repeat;
     background-color: #829541;
     width: 512px;
     height: 465px;
-    background-repeat: no-repeat;
 }
 
-.container {
+#user {
+    float: left;
+    margin: 15px;
+}
+
+#computer {
+    float: right;
+    margin: 15px;
+}
+
+#bricks {
+    width: 100%;
+    text-align: center;
     padding: 15px;
+}
+
+.brick {
+    background-image: url("../images/brick.jpg");
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 46px;
+    padding: 8px 0 0 2px;
+    text-align: center;
+    display: inline-block;
 }
