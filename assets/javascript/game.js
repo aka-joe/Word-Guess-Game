@@ -156,8 +156,10 @@ document.onkeyup = function (e) {
 
             // If the input key is not in the answer word...
             if (guessRight) {
+                rightSound.currentTime = 0;
                 rightSound.play();
             } else {
+                wrongSound.currentTime = 0;
                 wrongSound.play();
                 userAnswers += userInput + " ";
                 remainingChances--;
