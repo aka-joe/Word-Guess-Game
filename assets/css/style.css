@@ -8,6 +8,11 @@ div {
     font-size: 30px;
 }
 
+h1 {
+    font-size: 40px;
+    padding: 0 0 10px;
+}
+
 #gb-left {
     background-image: url("../images/gb-left.jpg");
     background-position: top right;
@@ -69,18 +74,13 @@ div {
 
 #message1 {
     width: 100%;
-    height: 60px;
-    padding-top: 75px;
+    height: 110px;
+    padding-top: 70px;
     text-align: center;
-    font-size: 40px;
 }
 
 #message2 {
-    width: 100%;
-    text-align: center;
-}
-
-#guesses {
+    font-size: 24px;
     background-color: #829541;
 }
 

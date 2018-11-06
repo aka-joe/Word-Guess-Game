@@ -1,5 +1,5 @@
 // Words list
-var words = ["mushroom", "flower", "castle", "princess", "turtle", "star", "jump", "coin", "yoshi", "mario", "peach", "luigi", "plumber", "pipe", "cannon", "hammer", "bomb"];
+var words = ["mushroom", "flower", "castle", "princess", "turtle", "star", "jump", "coin", "yoshi", "mario", "peach", "luigi", "plumber", "pipe", "cannon", "hammer", "bomb", "brick", "super"];
 
 // creating variables
 var word = "";
@@ -12,10 +12,9 @@ var userAnswers = "";
 var gameStatus = "";
 var guessRight = false;
 var displayAnswer = document.getElementById("answers");
-var displayGuessed = document.getElementById("guesses");
+var displayMessage = document.getElementById("message2");
 var userHP = document.getElementById("user");
 var comHP = document.getElementById("computer");
-var endingGame = document.getElementById("message1");
 
 // Initialize the game
 function reset() {
@@ -42,11 +41,10 @@ function reset() {
     }
 
     // reset the screen
-    userHP.textContent = "";
-    comHP.textContent = "";
-    displayAnswer.textContent = "";
-    displayGuessed.textContent = "";
-    endingGame.textContent = "";
+    userHP.innerHTML = "";
+    comHP.innerHTML = "";
+    displayAnswer.innerHTML = "";
+    displayMessage.innerHTML = "";
     screenImg("url('./assets/images/start.jpg')");
 }
 reset();
@@ -61,10 +59,12 @@ function displayStatus() {
     userHP.innerHTML = "MARIO<br>Life x" + remainingChances;
     comHP.innerHTML = "Bricks<br>Left x" + remainingLetters;
     displayAnswer.innerHTML = wordGuess;
-    if (gameStatus === "start" && userAnswers != "") {
-        displayGuessed.innerHTML = "GUESSED:<BR>" + userAnswers;   
-    } else {
-        displayGuessed.innerHTML = userAnswers;
+    if (gameStatus === "start") {
+        if (userAnswers != "") {
+            displayMessage.innerHTML = "<br>LETTERS GUESSED:<br>" + userAnswers;   
+        }
+     } else {
+        displayMessage.innerHTML = userAnswers;
     }
 }
 
@@ -73,6 +73,7 @@ function startGame(chances) {
     remainingChances = chances;
     gameStatus = "start";
     screenImg("url('./assets/images/main.jpg')");
+    displayMessage.innerHTML = "<br>Press A - Z keys<br>to guess the word"
     displayStatus();
 }
 
@@ -96,17 +97,16 @@ document.onkeyup = function (e) {
         }
     }
 
+    // If the game is not being played, exit the function
     if (remainingLetters === 0 || remainingChances === 0) {
         return;
     }
     
-    // Valid only 'a~z' letters only
+    // Valid only 'a~z' keys only
     if (userInput.length === 1 && codeInput >= 97 && codeInput <= 122) {
         // Check the input key whether have been used or not
         if (alphabets[codeInput - 97]) {
             alphabets[codeInput - 97] = false;
-
-            userAnswers += userInput;
 
             // Check with user input and the answer
             guessRight = false;
@@ -118,25 +118,25 @@ document.onkeyup = function (e) {
                 }
             }
 
+            // If the input key is not in the answer word...
             if (!guessRight) {
+                userAnswers += userInput;
                 remainingChances--;
             }
 
+            // Show game status
             wordGuess = "";
             for (var i = 0; i < answerArray.length; i++) {
                 wordGuess += "<div class='brick'>" + answerArray[i] + "</div>";
             }
-
             displayStatus();
 
-            // Show ending
+            // Show an ending message
             if (remainingLetters === 0) {
-                endingGame.innerHTML = "Stage clear!";
-                displayGuessed.innerHTML = "You win! Press 'Enter'<br>key to play again!"
+                displayMessage.innerHTML = "<h1>Stage Clear!</h1>You win! Press 'Enter'<br>key to play again!"
                 gameStatus = "end";
             } else if (remainingChances === 0) {
-                endingGame.innerHTML = "Game over!";
-                displayGuessed.innerHTML = "You lose... Press 'Enter'<br>key to try again!"
+                displayMessage.innerHTML = "<h1>Game Over!</h1>You lose... Press 'Enter'<br>key to try again!"
                 gameStatus = "end";
             }
         }
