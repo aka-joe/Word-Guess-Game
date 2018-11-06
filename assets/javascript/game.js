@@ -15,8 +15,9 @@ var displayAnswer = document.getElementById("answers");
 var displayGuessed = document.getElementById("guesses");
 var userHP = document.getElementById("user");
 var comHP = document.getElementById("computer");
-var endingGame = document.getElementById("message");
+var endingGame = document.getElementById("message1");
 
+// Initialize the game
 function reset() {
     // Choosing a random word
     word = words[Math.floor(Math.random() * words.length)];
@@ -41,25 +42,30 @@ function reset() {
     }
 
     // reset the screen
-    displayAnswer.textContent = "";
-    displayGuessed.textContent = "";
     userHP.textContent = "";
     comHP.textContent = "";
+    displayAnswer.textContent = "";
+    displayGuessed.textContent = "";
     endingGame.textContent = "";
     screenImg("url('./assets/images/start.jpg')");
 }
 reset();
 
+// Change background image
 function screenImg(imgURL) {
     document.getElementById("gb-screen").style.backgroundImage = imgURL;
 }
 
 // Display game status
 function displayStatus() {
-    displayAnswer.innerHTML = wordGuess;
-    displayGuessed.textContent = userAnswers;
     userHP.innerHTML = "MARIO<br>Life x" + remainingChances;
     comHP.innerHTML = "Bricks<br>Left x" + remainingLetters;
+    displayAnswer.innerHTML = wordGuess;
+    if (gameStatus === "start" && userAnswers != "") {
+        displayGuessed.innerHTML = "GUESSED:<BR>" + userAnswers;   
+    } else {
+        displayGuessed.innerHTML = userAnswers;
+    }
 }
 
 // Starting the game
@@ -80,13 +86,13 @@ document.onkeyup = function (e) {
     // Check the game status
     if (gameStatus === "ready") {
         if (userInput === "1") {
-            startGame(10);
+            startGame(10); // Easy mode
         } else if (userInput === "2") {
-            startGame(7);
+            startGame(7);  // Hard mode
         }
     } else if (gameStatus === "end") {
         if (userInput === "enter") {
-            reset();
+            reset(); // Restart the game
         }
     }
 
@@ -126,11 +132,11 @@ document.onkeyup = function (e) {
             // Show ending
             if (remainingLetters === 0) {
                 endingGame.innerHTML = "Stage clear!";
-                displayGuessed.innerHTML = "Press 'Enter' key<br>to play again"
+                displayGuessed.innerHTML = "You win! Press 'Enter'<br>key to play again!"
                 gameStatus = "end";
             } else if (remainingChances === 0) {
                 endingGame.innerHTML = "Game over!";
-                displayGuessed.innerHTML = "Press 'Enter' key<br>to play again"
+                displayGuessed.innerHTML = "You lose... Press 'Enter'<br>key to try again!"
                 gameStatus = "end";
             }
         }
