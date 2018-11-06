@@ -15,11 +15,6 @@ var displayAnswer = document.getElementById("answers");
 var displayMessage = document.getElementById("message2");
 var userHP = document.getElementById("user");
 var comHP = document.getElementById("computer");
-
-// Setup sounds
-window.onload = function () {
-    var context = new AudioContext();
-}
 var themeSong = document.getElementById("theme");
 var easySong = document.getElementById("easyMode");
 var hardSong = document.getElementById("hardMode");
@@ -131,6 +126,8 @@ document.onkeyup = function (e) {
             themeSong.pause();
             hardSong.play();
             startGame(7);  // Hard mode
+        } else {
+            themeSong.play();
         }
     } else if (gameStatus === "end" && userInput === "enter") {
             reset(); // Restart the game
