@@ -1,4 +1,4 @@
-// Words list
+// Mario words list
 var words = ["mushroom", "flower", "castle", "princess", "turtle", "star", "jump", "coin", "yoshi", "mario", "peach", "luigi", "plumber", "pipe", "cannon", "hammer", "bomb", "brick", "super"];
 
 // creating variables
@@ -15,6 +15,18 @@ var displayAnswer = document.getElementById("answers");
 var displayMessage = document.getElementById("message2");
 var userHP = document.getElementById("user");
 var comHP = document.getElementById("computer");
+
+// Setup sounds
+window.onload = function () {
+    var context = new AudioContext();
+}
+var themeSong = document.getElementById("theme");
+var easySong = document.getElementById("easyMode");
+var hardSong = document.getElementById("hardMode");
+var rightSound = document.getElementById("answerRight");
+var wrongSound = document.getElementById("answerWrong");
+var winSound = document.getElementById("win");
+var loseSound = document.getElementById("lose");
 
 // Initialize the game
 function reset() {
@@ -46,6 +58,16 @@ function reset() {
     displayAnswer.innerHTML = "";
     displayMessage.innerHTML = "";
     screenImg("url('./assets/images/start.jpg')");
+
+    //reset the sound
+    winSound.pause();
+    loseSound.pause();
+    easySong.currentTime = 0;
+    hardSong.currentTime = 0;
+    winSound.currentTime = 0;
+    loseSound.currentTime = 0;
+    themeSong.currentTime = 0;
+    themeSong.play();
 }
 reset();
 
@@ -68,13 +90,28 @@ function displayStatus() {
     }
 }
 
-// Starting the game
+// Start the game
 function startGame(chances) {
     remainingChances = chances;
     gameStatus = "start";
     screenImg("url('./assets/images/main.jpg')");
     displayMessage.innerHTML = "<br>Press A - Z keys<br>to guess the word"
     displayStatus();
+    rightSound.play();
+}
+
+// End the game
+function endGame(status) {
+    gameStatus = "end";
+    easySong.pause();
+    hardSong.pause();
+    if (status) {
+        winSound.play();
+        displayMessage.innerHTML = "<h1>Stage Clear!</h1>You win! Press 'Enter'<br>key to play again!";
+    } else {
+        loseSound.play();
+        displayMessage.innerHTML = "<h1>Game Over!</h1>You lose... Press 'Enter'<br>key to try again!";
+    }  
 }
 
 // 'On key up' function
@@ -87,14 +124,16 @@ document.onkeyup = function (e) {
     // Check the game status
     if (gameStatus === "ready") {
         if (userInput === "1") {
+            themeSong.pause();
+            easySong.play();
             startGame(10); // Easy mode
         } else if (userInput === "2") {
+            themeSong.pause();
+            hardSong.play();
             startGame(7);  // Hard mode
         }
-    } else if (gameStatus === "end") {
-        if (userInput === "enter") {
+    } else if (gameStatus === "end" && userInput === "enter") {
             reset(); // Restart the game
-        }
     }
 
     // If the game is not being played, exit the function
@@ -119,7 +158,10 @@ document.onkeyup = function (e) {
             }
 
             // If the input key is not in the answer word...
-            if (!guessRight) {
+            if (guessRight) {
+                rightSound.play();
+            } else {
+                wrongSound.play();
                 userAnswers += userInput + " ";
                 remainingChances--;
             }
@@ -131,13 +173,11 @@ document.onkeyup = function (e) {
             }
             displayStatus();
 
-            // Show an ending message
+            // Ending
             if (remainingLetters === 0) {
-                displayMessage.innerHTML = "<h1>Stage Clear!</h1>You win! Press 'Enter'<br>key to play again!"
-                gameStatus = "end";
+                endGame(true);
             } else if (remainingChances === 0) {
-                displayMessage.innerHTML = "<h1>Game Over!</h1>You lose... Press 'Enter'<br>key to try again!"
-                gameStatus = "end";
+                endGame(false);
             }
         }
     }
