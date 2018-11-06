@@ -73,14 +73,14 @@ function screenImg(imgURL) {
 
 // Display game status
 function displayStatus() {
-    userHP.innerHTML = "MARIO<br>Life x" + remainingChances;
+    userHP.innerHTML = "MARIO's<br>Life x" + remainingChances;
     comHP.innerHTML = "Bricks<br>Left x" + remainingLetters;
     displayAnswer.innerHTML = wordGuess;
     if (gameStatus === "start") {
         if (userAnswers != "") {
-            displayMessage.innerHTML = "<br>LETTERS GUESSED:<br>" + userAnswers;   
+            displayMessage.innerHTML = "<br>LETTERS GUESSED:<br>" + userAnswers;
         }
-     } else {
+    } else {
         displayMessage.innerHTML = userAnswers;
     }
 }
@@ -106,7 +106,7 @@ function endGame(status) {
     } else {
         loseSound.play();
         displayMessage.innerHTML = "<h1>Game Over!</h1>You lose... Press 'Enter'<br>key to try again!";
-    }  
+    }
 }
 
 // 'On key up' function
@@ -115,7 +115,7 @@ document.onkeyup = function (e) {
     var userInput = e.key;
     userInput = userInput.toLowerCase();
     var codeInput = userInput.charCodeAt(0);
-    
+
     // Check the game status
     if (gameStatus === "ready") {
         if (userInput === "1") {
@@ -130,14 +130,14 @@ document.onkeyup = function (e) {
             themeSong.play();
         }
     } else if (gameStatus === "end" && userInput === "enter") {
-            reset(); // Restart the game
+        reset(); // Restart the game
     }
 
     // If the game is not being played, exit the function
     if (remainingLetters === 0 || remainingChances === 0) {
         return;
     }
-    
+
     // Valid only 'a~z' keys only
     if (userInput.length === 1 && codeInput >= 97 && codeInput <= 122) {
         // Check the input key whether have been used or not
