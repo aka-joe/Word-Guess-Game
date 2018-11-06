@@ -1,5 +1,5 @@
 // Words list
-var words = ["mushroom", "flower", "castle", "princess", "turtle", "star", "jump", "coin", "yoshi", "mario", "peach", "luigi", "plumber", "pipe", "cannon", "hammer"];
+var words = ["mushroom", "flower", "castle", "princess", "turtle", "star", "jump", "coin", "yoshi", "mario", "peach", "luigi", "plumber", "pipe", "cannon", "hammer", "bomb"];
 
 // creating variables
 var word = "";
@@ -48,6 +48,7 @@ function reset() {
     endingGame.textContent = "";
     screenImg("url('./assets/images/start.jpg')");
 }
+reset();
 
 function screenImg(imgURL) {
     document.getElementById("gb-screen").style.backgroundImage = imgURL;
@@ -65,11 +66,9 @@ function displayStatus() {
 function startGame(chances) {
     remainingChances = chances;
     gameStatus = "start";
-    screenImg("none");
+    screenImg("url('./assets/images/main.jpg')");
     displayStatus();
 }
-
-reset();
 
 // 'On key up' function
 document.onkeyup = function (e) {
@@ -90,6 +89,7 @@ document.onkeyup = function (e) {
             reset();
         }
     }
+
     if (remainingLetters === 0 || remainingChances === 0) {
         return;
     }
@@ -100,14 +100,7 @@ document.onkeyup = function (e) {
         if (alphabets[codeInput - 97]) {
             alphabets[codeInput - 97] = false;
 
-            userAnswers = "";
-            for (i = 0; i < 26; i++) {
-                if (!alphabets[i]) {
-                    userAnswers += "* ";
-                } else {
-                    userAnswers += String.fromCharCode(i+65) + " ";
-                }
-            }
+            userAnswers += userInput;
 
             // Check with user input and the answer
             guessRight = false;
@@ -132,10 +125,12 @@ document.onkeyup = function (e) {
 
             // Show ending
             if (remainingLetters === 0) {
-                endingGame.textContent = "You won";
+                endingGame.innerHTML = "Stage clear!";
+                displayGuessed.innerHTML = "Press 'Enter' key<br>to play again"
                 gameStatus = "end";
             } else if (remainingChances === 0) {
-                endingGame.textContent = "You lost";
+                endingGame.innerHTML = "Game over!";
+                displayGuessed.innerHTML = "Press 'Enter' key<br>to play again"
                 gameStatus = "end";
             }
         }
