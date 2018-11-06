@@ -120,7 +120,7 @@ document.onkeyup = function (e) {
 
             // If the input key is not in the answer word...
             if (!guessRight) {
-                userAnswers += userInput;
+                userAnswers += userInput + " ";
                 remainingChances--;
             }
 
