@@ -49,3 +49,11 @@ document.onkeyup = function (e) {
                     remainingLetters--;
 }}}}};
 ```
+
+### Version History
+
+* Nov. 3, 2018 - Plain text version of 'Hangman' word game completed.  
+* Nov. 4, 2018 - Added responsive 'Game Boy' frame.  
+* Nov. 5, 2018 - Added 'Mario' themed backround color, images and font.  
+* Nov. 6, 2018 - Added Mario theme song and sound effects.  
+* Nov. 8, 2018 - Minor game update. Updated README.md.
