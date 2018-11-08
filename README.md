@@ -2,8 +2,8 @@
 
 ### Overview
 
-This is a Mario-themed word guessing game 'Hangman'.
-Created with HTML, CSS, and JavaScript. [Click here to try this game.](https://aka-joe.github.io/Word-Guess-Game/)
+This is a Mario-themed word guessing game 'Hangman'.  
+Created with HTML, CSS, and JavaScript.  [Click here to try this game.](https://aka-joe.github.io/Word-Guess-Game/)
 
 ### Concept Design
 
@@ -14,10 +14,11 @@ Created with HTML, CSS, and JavaScript. [Click here to try this game.](https://a
 1. Select difficulty.
 Pless '1' or '2' to select 'Easy Mode' or 'Hard Mode'.
 
-2. Guess the word and press any letter key.
+2. Guess the word and press any letter key.  
 (Hint: all words are related to Mario game.)
 
-3. If that letter is in the word then it will show in the brick. If the letter isn't in the word, your life count goes down by 1.
+3. If that letter is in the word then it will show in the brick.  
+If the letter isn't in the word, your life count goes down by 1.
 
 4. Repeat until you solve the word or your life count is 0.
 
