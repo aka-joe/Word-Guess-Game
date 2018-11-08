@@ -62,6 +62,11 @@ h1 {
     height: 465px;
 }
 
+#opening {
+    padding-top: 62px;
+    font-size: 26px;
+}
+
 #user {
     float: left;
     margin: 10px 15px;

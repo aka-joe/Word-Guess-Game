@@ -50,8 +50,8 @@ function reset() {
     // reset the screen
     userHP.innerHTML = "";
     comHP.innerHTML = "";
-    displayAnswer.innerHTML = "";
     displayMessage.innerHTML = "";
+    displayAnswer.innerHTML = "<div id='opening'>Press 1 or 2<br>to select level<br><br>1. Easy Mode<br>2. Hard Mode</div>";
     screenImg("url('./assets/images/start.jpg')");
 
     //reset the sound
@@ -73,7 +73,7 @@ function screenImg(imgURL) {
 
 // Display game status
 function displayStatus() {
-    userHP.innerHTML = "MARIO's<br>Life x" + remainingChances;
+    userHP.innerHTML = "Mario's<br>Life x" + remainingChances;
     comHP.innerHTML = "Bricks<br>Left x" + remainingLetters;
     displayAnswer.innerHTML = wordGuess;
     if (gameStatus === "start") {
