@@ -3,7 +3,7 @@
 ### Overview
 
 This is a Mario-themed word guessing game 'Hangman'.  
-Created with HTML, CSS, and JavaScript.  [Click here to try this game.](https://aka-joe.github.io/Word-Guess-Game/)
+Created with HTML, CSS, and JavaScript.  [Click here to try this game.](https://cre8dev.github.io/Word-Guess-Game/)
 
 ### Concept Design
 
